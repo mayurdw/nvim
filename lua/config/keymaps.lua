@@ -4,4 +4,4 @@
 vim.keymap.set("n", "<leader>y", function()
   vim.fn.setreg(vim.v.register, vim.fn.expand("%"))
 end, { desc = "Copy filename+line to clipboard" })
-vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "jk", "<Esc><cmd>w<CR>", { desc = "Stop typing and save file" })
