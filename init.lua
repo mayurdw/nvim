@@ -3,6 +3,9 @@ require("mini.keymap").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.splitjoin").setup()
+require("mini.completion").setup()
+require("mini.statusline").setup()
+require("telescope").setup()
 
 -- Basic Settings
 vim.opt.number = true
