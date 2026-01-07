@@ -1,3 +1,9 @@
+require("config.lazy")
+require("mini.keymap").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
+require("mini.splitjoin").setup()
+
 -- Basic Settings
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -9,8 +15,6 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.o.listchars = 'tab:» ,lead:•,trail:•'
-vim.opt.colorcolumn = "130"                        -- Show column at 100 characters
-vim.opt.columns = 130
 vim.opt.clipboard:append("unnamedplus")            -- Use system clipboard
 
 -- Indentation
@@ -28,11 +32,8 @@ vim.opt.hlsearch = false                           -- Don't highlight search res
 vim.opt.incsearch = true                           -- Show matches as you type
 
  -- Theme & UI
-vim.cmd.colorscheme('zaibatsu')
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.opt.termguicolors = true                       -- Enable 24-bit colors
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
