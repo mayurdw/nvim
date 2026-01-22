@@ -6,6 +6,7 @@ require("mini.splitjoin").setup()
 require("mini.completion").setup()
 require("mini.statusline").setup()
 require("telescope").setup()
+require("toggleterm").setup()
 
 -- Basic Settings
 vim.opt.number = true
@@ -21,9 +22,9 @@ vim.o.listchars = 'tab:» ,lead:•,trail:•'
 vim.opt.clipboard:append("unnamedplus")            -- Use system clipboard
 
 -- Indentation
-vim.opt.tabstop = 3                                -- Tab width
-vim.opt.shiftwidth = 3                             -- Indent width
-vim.opt.softtabstop = 3                            -- Soft tab stop
+vim.opt.tabstop = 4                                -- Tab width
+vim.opt.shiftwidth = 4                             -- Indent width
+vim.opt.softtabstop = 4                            -- Soft tab stop
 vim.opt.expandtab = true                           -- Use spaces instead of tabs
 vim.opt.smartindent = true                         -- Smart auto-indenting
 vim.opt.autoindent = true                          -- Copy indent from current line
@@ -40,3 +41,13 @@ vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.opt.termguicolors = true                       -- Enable 24-bit colors
 
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+   desc = 'Highlight when yanking (copying) text',
+   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true}),
+   callback = function ()
+      vim.highlight.on_yank()
+   end
+})
