@@ -7,6 +7,18 @@ require("mini.completion").setup()
 require("mini.statusline").setup()
 require("telescope").setup()
 require("toggleterm").setup()
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
+require("bufferline").setup()
 
 -- Basic Settings
 vim.opt.number = true
@@ -35,6 +47,8 @@ vim.opt.smartcase = true                           -- Case sensitive if uppercas
 vim.opt.hlsearch = false                           -- Don't highlight search results 
 vim.opt.incsearch = true                           -- Show matches as you type
 
+vim.opt.splitright = true
+
  -- Theme & UI
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -51,3 +65,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
       vim.highlight.on_yank()
    end
 })
+
+-- Window Splitting
+vim.keymap.set("n", "<leader>wh", "<C-W><C-^>", { desc = "Split Window Below", remap = true })
+vim.keymap.set("n", "<leader>wH", "<C-W>s", { desc = "Duplicate Window Below", remap = true })
+vim.keymap.set("n", "<leader>wv", "<C-W>v", { desc = "Split Window Right", remap = true })
+vim.keymap.set("n", "<leader>wu", "<C-W>c", { desc = "Delete Window", remap = true })
+
+-- Better Indenting
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+
+-- Move between Windows
+vim.keymap.set("n", "<A-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+vim.keymap.set("n", "<A-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+vim.keymap.set("n", "<A-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+-- Quit
+vim.keymap.set("n", "<leader>q", "<cmd>qall<cr>", { desc = "Quit all", remap = true })
