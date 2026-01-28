@@ -8,15 +8,15 @@ require("mini.statusline").setup()
 require("telescope").setup()
 require("toggleterm").setup()
 require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    -- You can customize some of the format options for the filetype (:help conform.format)
-    rust = { "rustfmt", lsp_format = "fallback" },
-    -- Conform will run the first available formatter
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-  },
+    formatters_by_ft = {
+        lua = { "stylua" },
+        -- Conform will run multiple formatters sequentially
+        python = { "isort", "black" },
+        -- You can customize some of the format options for the filetype (:help conform.format)
+        rust = { "rustfmt", lsp_format = "fallback" },
+        -- Conform will run the first available formatter
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+    },
 })
 require("bufferline").setup()
 
@@ -31,39 +31,39 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.o.listchars = 'tab:» ,lead:•,trail:•'
-vim.opt.clipboard:append("unnamedplus")            -- Use system clipboard
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 
 -- Indentation
-vim.opt.tabstop = 4                                -- Tab width
-vim.opt.shiftwidth = 4                             -- Indent width
-vim.opt.softtabstop = 4                            -- Soft tab stop
-vim.opt.expandtab = true                           -- Use spaces instead of tabs
-vim.opt.smartindent = true                         -- Smart auto-indenting
-vim.opt.autoindent = true                          -- Copy indent from current line
+vim.opt.tabstop = 4        -- Tab width
+vim.opt.shiftwidth = 4     -- Indent width
+vim.opt.softtabstop = 4    -- Soft tab stop
+vim.opt.expandtab = true   -- Use spaces instead of tabs
+vim.opt.smartindent = true -- Smart auto-indenting
+vim.opt.autoindent = true  -- Copy indent from current line
 
 -- Search settings
-vim.opt.ignorecase = true                          -- Case insensitive search
-vim.opt.smartcase = true                           -- Case sensitive if uppercase in search
-vim.opt.hlsearch = false                           -- Don't highlight search results 
-vim.opt.incsearch = true                           -- Show matches as you type
+vim.opt.ignorecase = true -- Case insensitive search
+vim.opt.smartcase = true  -- Case sensitive if uppercase in search
+vim.opt.hlsearch = false  -- Don't highlight search results
+vim.opt.incsearch = true  -- Show matches as you type
 
 vim.opt.splitright = true
 
- -- Theme & UI
+-- Theme & UI
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-vim.opt.termguicolors = true                       -- Enable 24-bit colors
+vim.opt.termguicolors = true -- Enable 24-bit colors
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
-   desc = 'Highlight when yanking (copying) text',
-   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true}),
-   callback = function ()
-      vim.highlight.on_yank()
-   end
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end
 })
 
 -- Window Splitting
@@ -82,5 +82,39 @@ vim.keymap.set("n", "<A-j>", "<C-w>j", { desc = "Go to Lower Window", remap = tr
 vim.keymap.set("n", "<A-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
+-- Lazy
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy", remap = true })
+
 -- Quit
 vim.keymap.set("n", "<leader>q", "<cmd>qall<cr>", { desc = "Quit all", remap = true })
+
+-- GDScript
+
+-- paths to check for project.godot file
+local paths_to_check = { '/', '/../' }
+local is_godot_project = false
+local godot_project_path = ''
+local cwd = vim.fn.getcwd()
+
+-- iterate over paths and check
+for key, value in pairs(paths_to_check) do
+    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
+        is_godot_project = true
+        godot_project_path = cwd .. value
+        break
+    end
+end
+
+-- check if server is already running in godot project path
+local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
+-- start server, if not already running
+if is_godot_project and not is_server_running then
+    vim.fn.serverstart(godot_project_path .. '/server.pipe')
+end
+
+vim.lsp.config('gdscript', {
+    cmd = vim.lsp.rpc.connect('127.0.0.1', tonumber(6005)),
+    filetypes = { 'gd', 'gdscript', 'gdscript3' },
+    root_markers = { 'project.godot', '.git' },
+})
+vim.lsp.enable('gdscript')

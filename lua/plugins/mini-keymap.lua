@@ -6,7 +6,7 @@ return {
 
       -- Support most common modes. This can also contain 't', but would
       -- only mean to press `<Esc>` inside terminal.
-      local mode = { 'i', 'c', 'x', 's' }
+      local mode = { 'i', 'c', 'x', 's', 'n' }
       map_combo(mode, 'jk', '<BS><BS><Esc><cmd>:w<CR><cmd><CR>')
 
       -- To not have to worry about the order of keys, also map "kj"
