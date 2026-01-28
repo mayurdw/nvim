@@ -1,7 +1,7 @@
 require("config.lazy")
 require("mini.keymap").setup()
 require("mini.pairs").setup()
-require("mini.surround").setup()
+require("nvim-surround").setup()
 require("mini.splitjoin").setup()
 require("mini.completion").setup()
 require("mini.statusline").setup()
@@ -87,6 +87,9 @@ vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy", remap = true 
 
 -- Quit
 vim.keymap.set("n", "<leader>q", "<cmd>qall<cr>", { desc = "Quit all", remap = true })
+
+
+-- Autocommand
 
 -- GDScript
 
