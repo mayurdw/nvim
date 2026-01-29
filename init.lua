@@ -1,24 +1,6 @@
 require("config.lazy")
-require("mini.keymap").setup()
-require("mini.pairs").setup()
-require("nvim-surround").setup()
-require("mini.splitjoin").setup()
-require("mini.completion").setup()
-require("mini.statusline").setup()
-require("telescope").setup()
-require("toggleterm").setup()
-require("conform").setup({
-    formatters_by_ft = {
-        lua = { "stylua" },
-        -- Conform will run multiple formatters sequentially
-        python = { "isort", "black" },
-        -- You can customize some of the format options for the filetype (:help conform.format)
-        rust = { "rustfmt", lsp_format = "fallback" },
-        -- Conform will run the first available formatter
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-    },
-})
-require("bufferline").setup()
+require("config.lsp")
+require("config.setup")
 
 -- Basic Settings
 vim.opt.number = true
@@ -90,34 +72,3 @@ vim.keymap.set("n", "<leader>q", "<cmd>qall<cr>", { desc = "Quit all", remap = t
 
 
 -- Autocommand
-
--- GDScript
-
--- paths to check for project.godot file
-local paths_to_check = { '/', '/../' }
-local is_godot_project = false
-local godot_project_path = ''
-local cwd = vim.fn.getcwd()
-
--- iterate over paths and check
-for key, value in pairs(paths_to_check) do
-    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
-        is_godot_project = true
-        godot_project_path = cwd .. value
-        break
-    end
-end
-
--- check if server is already running in godot project path
-local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
--- start server, if not already running
-if is_godot_project and not is_server_running then
-    vim.fn.serverstart(godot_project_path .. '/server.pipe')
-end
-
-vim.lsp.config('gdscript', {
-    cmd = vim.lsp.rpc.connect('127.0.0.1', tonumber(6005)),
-    filetypes = { 'gd', 'gdscript', 'gdscript3' },
-    root_markers = { 'project.godot', '.git' },
-})
-vim.lsp.enable('gdscript')

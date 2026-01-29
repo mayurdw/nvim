@@ -10,7 +10,8 @@ return {
             { "<leader>rf", vim.lsp.buf.format,         desc = "Perform Formatting" },
             { "gd",         vim.lsp.buf.declaration,    desc = "Go to Declaration" },
             { "gi",         vim.lsp.buf.implementation, desc = "Go to Implementation" },
-            { "gr",         vim.lsp.buf.references,     desc = "Go to references" }
+            { "gr",         vim.lsp.buf.references,     desc = "Go to references" },
+            { "<leader>am", vim.lsp.buf.code_action,    desc = "Code Action" },
         }
     }
 }
