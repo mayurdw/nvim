@@ -9,14 +9,17 @@ return {
     { "gr", vim.lsp.buf.references, desc = "Go to references" },
     { "<leader>am", vim.lsp.buf.code_action, desc = "Code Action" },
   },
+  servers = {
+    lua_ls = {
+      settings = {
+        diagnostics = { globals = "vim" },
+      },
+    },
+  },
   config = function()
     local lsp = vim.lsp
 
-    lsp.config("lua_ls", {
-      settins = {
-        diagnostics = { globals = "vim" },
-      },
-    })
+    lsp.enable("lua_ls")
 
     -- paths to check for project.godot file
     local paths_to_check = { "/", "/../" }
