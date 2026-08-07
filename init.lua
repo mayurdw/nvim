@@ -1,41 +1,4 @@
--- Options
-local o = vim.opt
-
-o.number = true
-o.relativenumber = true
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
-o.expandtab = true
-
-o.wrap = true
-o.smartindent = true
-o.inccommand = "split"
-
-o.splitbelow = true
-o.smartcase = true
-o.ignorecase = true
-o.laststatus = 3
-
-o.clipboard:append("unnamedplus")
-o.scrolloff = 8
-
-o.colorcolumn = "0"
-o.signcolumn = "yes"
-o.cmdheight = 0
-o.listchars = "tab:» ,lead:•,trail:•"
-
--- Autocommands
-
-local a = vim.api
-
-a.nvim_create_autocmd("TextYankPost", {
-	desc = "Hightlight when copying",
-	callback = function()
-		vim.hl.on_yank()
-	end
-})
-
+require 'config'
 -- Keymaps
 local k = vim.keymap
 
@@ -75,6 +38,8 @@ p.add({
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/kdheepak/lazygit.nvim",
     "https://github.com/scottmckendry/cyberdream.nvim",
+    "https://github.com/nvim-tree/nvim-web-devicons",
+    "https://github.com/romgrk/barbar.nvim",
     "https://github.com/S1M0N38/love2d.nvim"
 })
 
