@@ -61,6 +61,8 @@ k.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart config :restart)"
 
 k.set("n", "<leader>wt", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float terminal" })
 k.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
+k.set("n", "qq", "<cmd>:wqall<cr>", { desc = "Quit and save" })
+
 -- Plugins
 local p = vim.pack
 
@@ -72,7 +74,8 @@ p.add({
     "https://github.com/akinsho/toggleterm.nvim",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/kdheepak/lazygit.nvim",
-    "https://github.com/scottmckendry/cyberdream.nvim"
+    "https://github.com/scottmckendry/cyberdream.nvim",
+    "https://github.com/S1M0N38/love2d.nvim"
 })
 
 require("toggleterm").setup()
@@ -247,7 +250,7 @@ vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = { globals = { "vim" } },
+            diagnostics = { globals = { "vim", "love" } },
         },
     },
 })
@@ -289,3 +292,12 @@ vim.lsp.enable({
     "gdscript",
     "clangd"
 })
+
+require("love2d").setup({
+    output = false
+})
+vim.keymap.set('n', '<leader>vr', '<cmd>Love run<cr>',    { desc = 'Run LÖVE' })
+vim.keymap.set('n', '<leader>vw', '<cmd>Love watch<cr>',  { desc = 'Watch LÖVE' })
+vim.keymap.set('n', '<leader>vi', '<cmd>Love info<cr>',   { desc = 'Info LÖVE' })
+vim.keymap.set('n', '<leader>vs', '<cmd>Love stop<cr>',   { desc = 'Stop LÖVE' })
+vim.keymap.set('n', '<leader>vo', '<cmd>Love output<cr>', { desc = 'Output panel' })
