@@ -26,4 +26,4 @@ o.cmdheight = 0
 o.list = true
 o.listchars = "tab:» ,lead:•,trail:•"
 
-
+vim.cmd("colorscheme cyberdream")
