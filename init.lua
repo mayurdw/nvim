@@ -13,9 +13,9 @@ k.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini 
 
 MiniFiles.setup({
     mappings = {
-        go_in = "<CR>",
+        go_in = "l",
         go_in_plus = "L",
-        go_out = "_",
+        go_out = "h",
         go_out_plus = "H",
     },
 })
