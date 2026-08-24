@@ -26,4 +26,6 @@ o.cmdheight = 0
 o.list = true
 o.listchars = "tab:» ,lead:•,trail:•"
 
+o.mouse=
+
 vim.cmd("colorscheme cyberdream")

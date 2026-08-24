@@ -12,7 +12,8 @@ p.add({
     "https://github.com/scottmckendry/cyberdream.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
     "https://github.com/romgrk/barbar.nvim",
-    "https://github.com/S1M0N38/love2d.nvim"
+    "https://github.com/S1M0N38/love2d.nvim",
+    "https://github.com/stevearc/oil.nvim"
 })
 
 require("mason").setup()
