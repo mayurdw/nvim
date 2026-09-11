@@ -29,3 +29,13 @@ for i, filename in ipairs(config_files) do
   local config_module = string.match(filename, "(.+).lua$")
   require(module_name.."."..config_module)
 end
+
+vim.lsp.enable({
+    "lua_ls",
+    "marksman",
+    "gopls",
+    "rust_analyzer",
+    "ruby_lsp",
+    "gdscript",
+    "clangd"
+})

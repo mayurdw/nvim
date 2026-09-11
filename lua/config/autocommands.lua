@@ -28,3 +28,29 @@ vim.api.nvim_create_autocmd("FileType", {
 		pcall(vim.treesitter.start, buf, lang)
 	end,
 })
+
+vim.api.nvim_create_autocmd('CompleteDone', {
+  callback = function()
+    -- Get the item that was just completed
+    local completed = vim.v.completed_item
+    if not completed or completed == vim.empty_dict() then
+      return
+    end
+
+    -- Check if the completed word ends with a quote or angle bracket
+    local word = completed.word or ""
+    if word:sub(-1) == '"' or word:sub(-1) == '>' then
+      local cursor = vim.api.nvim_win_get_cursor(0)
+      local row = cursor[1] - 1 -- API functions like set_text use 0-indexed rows
+      local col = cursor[2]     -- Current column (0-indexed)
+
+      local line = vim.api.nvim_get_current_line()
+      local next_char = line:sub(col + 1, col + 1)
+
+      -- If the character directly after the cursor is an extra matching quote/bracket, delete it
+      if next_char == '"' or next_char == '>' then
+        vim.api.nvim_buf_set_text(0, row, col, row, col + 1, {})
+      end
+    end
+  end,
+})

@@ -4,6 +4,10 @@
       "rev": "337ecfadb8bf005050990bf2f624dc4fc828dabd",
       "src": "https://github.com/romgrk/barbar.nvim"
     },
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
     "cyberdream.nvim": {
       "rev": "b9cc88378b776f33d3ea77164716f37c3f13ef72",
       "src": "https://github.com/scottmckendry/cyberdream.nvim"

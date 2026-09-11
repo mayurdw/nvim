@@ -11,7 +11,7 @@ p.add({
     "https://github.com/kdheepak/lazygit.nvim",
     "https://github.com/scottmckendry/cyberdream.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
-    "https://github.com/romgrk/barbar.nvim",
+    "https://github.com/akinsho/bufferline.nvim",
     "https://github.com/S1M0N38/love2d.nvim",
     "https://github.com/stevearc/oil.nvim"
 })
@@ -28,6 +28,7 @@ require("mini.trailspace").setup()
 require("mini.indentscope").setup()
 require("mini.pairs").setup()
 require("mini.jump2d").setup()
+require("bufferline").setup()
 
 ---- mini notify ----
 require("mini.notify").setup({
@@ -39,7 +40,6 @@ require("mini.notify").setup({
     },
 })
 
---- mini cmdline completion ---
 require("mini.cmdline").setup({
     autocorrect = { enable = false }
 })

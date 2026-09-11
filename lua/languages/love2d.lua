@@ -1,13 +1,3 @@
-vim.lsp.enable({
-    "lua_ls",
-    "marksman",
-    "gopls",
-    "rust_analyzer",
-    "ruby_lsp",
-    "gdscript",
-    "clangd"
-})
-
 require("love2d").setup({
     output = false
 })
