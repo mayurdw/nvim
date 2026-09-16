@@ -15,5 +15,6 @@ k.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini 
 require("oil").setup()
 
 k.set("n", "-", "<cmd>Oil<CR>", { desc = "Toggle mini file explorer" })
-k.set("n", "bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close Others" } )
+k.set("n", "<leader>qo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close Others" } )
+k.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" } )
 
