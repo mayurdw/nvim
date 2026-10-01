@@ -54,3 +54,26 @@ vim.api.nvim_create_autocmd('CompleteDone', {
     end
   end,
 })
+
+-- Source - https://stackoverflow.com/a/77774160␍
+-- Posted by lcheylus, modified by community. See post 'Timeline' for change history␍
+-- Retrieved 2026-09-26, License - CC BY-SA 4.0␍
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
+  desc = 'Trim trailing white spaces',
+  pattern = '*',
+  callback = function()
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = '<buffer>',
+      -- Trim trailing whitespaces
+      callback = function()
+        -- Save cursor position to restore later
+        local curpos = vim.api.nvim_win_get_cursor(0)
+        -- Search and replace trailing whitespaces
+        vim.cmd([[keeppatterns %s/\s\+$//e]])
+        vim.api.nvim_win_set_cursor(0, curpos)
+      end,
+    })
+  end,
+})
+
