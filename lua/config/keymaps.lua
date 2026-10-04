@@ -27,4 +27,18 @@ k.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })
 k.set("n", "qq", "<cmd>:wqall<cr>", { desc = "Quit and save" })
 
 k.set("n", "<leader>bd", "<cmd>BufferClose<cr>", { desc = "Close buffer" })
+k.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" } )
+k.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+k.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+k.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+k.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+-- Move Lines
+k.set("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+k.set("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+k.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+k.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+k.set("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+k.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
+k.set("n", "-", "<cmd>Oil<CR>", { desc = "Toggle mini file explorer" })
+k.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close this buffer" } )

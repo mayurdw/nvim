@@ -28,11 +28,17 @@ require("mini.trailspace").setup()
 require("mini.indentscope").setup()
 require("mini.pairs").setup()
 require("mini.jump2d").setup()
-require("bufferline").setup()
+require("bufferline").setup({
+    options = {
+             show_buffer_close_icons = false,
+             close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
+    }
+})
+require("oil").setup()
 
 ---- mini notify ----
 require("mini.notify").setup({
-	-- only show messages
+    -- only show messages
     content = {
         format = function(notif)
             return notif.msg
@@ -63,7 +69,7 @@ MiniSnippets.start_lsp_server({ match = false })
 --- mini diff and fugitive ---
 local MiniDiff = require("mini.diff")
 MiniDiff.setup({
-	source = MiniDiff.gen_source.git({ index = false }),
+    source = MiniDiff.gen_source.git({ index = false }),
 })
 
 

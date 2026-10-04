@@ -12,9 +12,4 @@ k.set("n", "<leader>fr", function ()
 end, { desc = "Mini File Recent Files"})
 k.set("n", "<leader>fc", function() MiniPick.builtin.grep({ pattern = vim.fn.expand("<cword>") }) end, { desc = "Grep word/Search word" })
 k.set("n", "<leader>vh", function() MiniPick.builtin.help() end, { desc = "Mini Help" })
-require("oil").setup()
-
-k.set("n", "-", "<cmd>Oil<CR>", { desc = "Toggle mini file explorer" })
 k.set("n", "<leader>qo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close Others" } )
-k.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" } )
-
