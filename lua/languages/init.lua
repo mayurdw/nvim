@@ -37,5 +37,6 @@ vim.lsp.enable({
     "rust_analyzer",
     "ruby_lsp",
     "gdscript",
-    "clangd"
+    "clangd",
+    "tsc"
 })
