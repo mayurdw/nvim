@@ -32,6 +32,8 @@ k.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 k.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 k.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 k.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+k.set("n", "<leader>wh", "<cmd>split<cr>", { desc = "Split Horizontally" })
+k.set("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "Split Vertically" })
 -- Move Lines
 k.set("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
 k.set("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
